@@ -8,6 +8,7 @@ import Jpeg from './image-header-jpeg.js';
 import Png from './image-header-png.js';
 import Heic from './image-header-heic.js';
 import Webp from './image-header-webp.js';
+import Xmp from './image-header-xmp.js';
 
 export default {
     parseAppMarkers
@@ -32,6 +33,10 @@ function parseAppMarkers(dataView) {
 
     if (Constants.USE_WEBP && Webp.isWebpFile(dataView)) {
         return Webp.findOffsets(dataView);
+    }
+
+    if (Constants.USE_XMP && Xmp.isXmpFile(dataView)) {
+        return Xmp.findXmpOffsets(dataView);
     }
 
     throw new Error('Invalid image format');

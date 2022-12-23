@@ -26,6 +26,7 @@ You can try it out on the
 | PNG       | no      | no      | **yes** | no      | no      | no        |
 | HEIC/HEIF | **yes** | no      | no      | **yes** | ???     | no        |
 | WebP      | **yes** | no      | **yes** | **yes** | ???     | **yes**   |
+| XMP       | no      | no      | **yes** | no      | no      | no        |
 
 ??? = MPF may be supported in any file type using Exif since it's an Exif
 extension, but it has only been tested on JPEGs.

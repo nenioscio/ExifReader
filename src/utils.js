@@ -10,6 +10,22 @@ export function getStringFromDataView(dataView, offset, length) {
     return getStringValueFromArray(chars);
 }
 
+export function indexOfStringInDataView(string, dataView, offset, length) {
+    const stringChars = getCharacterArray(string);
+    const dataChars = [];
+    for (let i = 0; i < length && offset + i < dataView.byteLength; i++) {
+        dataChars.push(dataView.getUint8(offset + i));
+        if (i >= stringChars.length && dataChars[i-stringChars.length] == stringChars[0])
+        {
+            const dataSlice = dataChars.slice(i - stringChars.length, i);
+            if (stringChars.every((u, j) => {return u === dataSlice[j];})) {
+                return i - stringChars.length;
+            }
+        }
+    }
+    return -1;
+}
+
 export function getUnicodeStringFromDataView(dataView, offset, length) {
     const chars = [];
     for (let i = 0; i < length && offset + i < dataView.byteLength; i += 2) {
